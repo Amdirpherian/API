@@ -48,7 +48,7 @@ async def on_startup():
     if redis.pool is None or redis.pool.connection is None:
         if (redis_uri := config.redis_uri()) is not None:
             redis.pool = Redis.from_url(redis_uri)
-            log.info("Connected to redis server: " + str(redis.pool))
+            log.info(f"Connected to redis server: {str(redis.pool)}")
         else:
             redis.pool = FakeRedis()
             log.warning(
